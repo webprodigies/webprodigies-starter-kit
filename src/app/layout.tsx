@@ -22,7 +22,7 @@ export default function RootLayout({
     return (
         <ClerkProvider>
             <html lang="en">
-                <body className={`${jakarta.className} bg-dark`}>
+                <body className={`${jakarta.className} bg-black`}>
                     <ThemeProvider
                         attribute="class"
                         defaultTheme="dark"
