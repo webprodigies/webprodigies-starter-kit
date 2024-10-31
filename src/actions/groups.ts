@@ -3,6 +3,7 @@ import { CreateGroupSchema } from "@/components/forms/Create-Group/schema"
 import { client } from "@/lib/prisma"
 import { v4 as uuidv4 } from "uuid"
 import { z } from "zod"
+import { onAuthenticatedUser } from "./auth"
 
 export const onGetAffiliateInfo = async (id: string) => {
     try {
@@ -108,3 +109,87 @@ export const onCreateNewGroup = async (
         }
     }
 }
+
+
+export const onGetGroupInfo = async (groupid: string) => {
+    try {
+      const user = await onAuthenticatedUser()
+      const group = await client.group.findUnique({
+        where: {
+          id: groupid,
+        },
+      })
+  
+      if (group)
+        return {
+          status: 200,
+          group,
+          groupOwner: user.id === group.userId ? true : false,
+        }
+  
+      return { status: 404 }
+    } catch (error) {
+      return { status: 400 }
+    }
+  }
+  
+  export const onGetUserGroups = async (id: string) => {
+    try {
+      const groups = await client.user.findUnique({
+        where: {
+          id,
+        },
+        select: {
+          group: {
+            select: {
+              id: true,
+              name: true,
+              icon: true,
+              channel: {
+                where: {
+                  name: "general",
+                },
+                select: {
+                  id: true,
+                },
+              },
+            },
+          },
+          membership: {
+            select: {
+              Group: {
+                select: {
+                  id: true,
+                  icon: true,
+                  name: true,
+                  channel: {
+                    where: {
+                      name: "general",
+                    },
+                    select: {
+                      id: true,
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      })
+  
+      if (groups && (groups.group.length > 0 || groups.membership.length > 0)) {
+        return {
+          status: 200,
+          groups: groups.group,
+          members: groups.membership,
+        }
+      }
+  
+      return {
+        status: 404,
+      }
+    } catch (error) {
+      return { status: 400 }
+    }
+  }
+  

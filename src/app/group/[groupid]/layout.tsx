@@ -1,12 +1,10 @@
-type Props = {
-    children: React.ReactNode
-    params: {
-        groupid: string
-    }
-}
+
+type Props = {}
 
 const GroupLayout = (props: Props) => {
-    return <div>GroupLayout</div>
+  return (
+    <div>GroupLayout</div>
+  )
 }
 
 export default GroupLayout
