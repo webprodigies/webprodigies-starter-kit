@@ -14,11 +14,10 @@ type Props = {
     stripeId?: string
 }
 
-const GroupList = dynamic(
-    () => 
-        import("@/components/global/GrouplistSlider").then(
-            (component) => component.GroupListSlider,
-        )
+const GroupList = dynamic(() =>
+    import("@/components/global/GrouplistSlider").then(
+        (component) => component.GroupListSlider,
+    ),
 )
 
 const PaymentForm = ({ affiliate, userId, stripeId }: Props) => {
@@ -35,11 +34,11 @@ const PaymentForm = ({ affiliate, userId, stripeId }: Props) => {
         <Loader loading={creatingIntent}>
             <form className="pt-5" onSubmit={onCreateGroup}>
                 <div className="px-7 mb-2">
-                    <GroupList 
-                    selected={isCategory}
-                    register={register}
-                    label="Select a category"
-                    slidesOffsetBefore={28}
+                    <GroupList
+                        selected={isCategory}
+                        register={register}
+                        label="Select a category"
+                        slidesOffsetBefore={28}
                     />
                     <ErrorMessage
                         errors={errors}

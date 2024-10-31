@@ -1,6 +1,6 @@
 type Props = {
     children: React.ReactNode
-    params:{
+    params: {
         groupid: string
     }
 }

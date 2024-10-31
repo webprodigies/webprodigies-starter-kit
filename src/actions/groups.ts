@@ -108,5 +108,3 @@ export const onCreateNewGroup = async (
         }
     }
 }
-
-
