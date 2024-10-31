@@ -15,14 +15,12 @@ import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 import { z } from "zod"
 
-export const userStripeElemens = () => {
+export const useStripeElements = () => {
     const StripePromise = async () =>
-        await loadStripe(
-            process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string,
-        )
-
+      await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISH_KEY as string)
+  
     return { StripePromise }
-}
+  }
 
 export const usePayments = (
     userId: string,
