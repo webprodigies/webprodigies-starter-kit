@@ -4,9 +4,11 @@ import { useGroupChatOnline } from "@/hooks/groups"
 import { useSideBar } from "@/hooks/navigation"
 import { CarotSort } from "@/icons"
 import { cn } from "@/lib/utils"
-import { Group } from "lucide-react"
+import { Group, Plus } from "lucide-react"
 import Link from "next/link"
+import { v4 } from "uuid"
 import { DropDown } from "../drop-down"
+import SideBarMenu from "./menu"
 
 type Props = {
     groupid: string
@@ -108,6 +110,39 @@ const SideBar = ({ groupid, userid, mobile }: Props) => {
                         ))}
                 </DropDown>
             )}
+
+            <div className="flex flex-col gap-y-5">
+                <div className="flex justify-between items-center">
+                    <p className="text-xs text-[#F7ECE9]">CHANNELS</p>
+                    {userid === groupInfo.group?.userId && (
+                        <Plus
+                            size={16}
+                            className={cn(
+                                "text-themeTextGray cursor-pointer",
+                                isPending && "opacity-70",
+                            )}
+                            {...(!isPending && {
+                                onClick: () =>
+                                    mutate({
+                                        id: v4(),
+                                        icon: "general",
+                                        name: "unnamed",
+                                        createdAt: new Date(),
+                                        groupId: groupid,
+                                    }),
+                            })}
+                        />
+                    )}
+                </div>
+                <SideBarMenu
+                    channels={channels?.channels!}
+                    optimisticChannel={variables}
+                    loading={isPending}
+                    groupid={groupid}
+                    groupUserId={groupInfo.group?.userId!}
+                    userId={userid}
+                />
+            </div>
         </div>
     )
 }
