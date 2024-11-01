@@ -1,4 +1,4 @@
-'use client'
+"use client"
 import { useGroupChatOnline } from "@/hooks/groups"
 import { useSideBar } from "@/hooks/navigation"
 import { cn } from "@/lib/utils"
@@ -64,7 +64,6 @@ const SideBar = ({ groupid, userid, mobile }: Props) => {
                     : "w-full flex",
             )}
         >
-
             gg
         </div>
     )
