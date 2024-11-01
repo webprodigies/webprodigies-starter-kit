@@ -110,86 +110,127 @@ export const onCreateNewGroup = async (
     }
 }
 
-
 export const onGetGroupInfo = async (groupid: string) => {
     try {
-      const user = await onAuthenticatedUser()
-      const group = await client.group.findUnique({
-        where: {
-          id: groupid,
-        },
-      })
-  
-      if (group)
-        return {
-          status: 200,
-          group,
-          groupOwner: user.id === group.userId ? true : false,
-        }
-  
-      return { status: 404 }
+        const user = await onAuthenticatedUser()
+        const group = await client.group.findUnique({
+            where: {
+                id: groupid,
+            },
+        })
+
+        if (group)
+            return {
+                status: 200,
+                group,
+                groupOwner: user.id === group.userId ? true : false,
+            }
+
+        return { status: 404 }
     } catch (error) {
-      return { status: 400 }
+        return { status: 400 }
     }
-  }
-  
-  export const onGetUserGroups = async (id: string) => {
+}
+
+export const onGetUserGroups = async (id: string) => {
     try {
-      const groups = await client.user.findUnique({
-        where: {
-          id,
-        },
-        select: {
-          group: {
-            select: {
-              id: true,
-              name: true,
-              icon: true,
-              channel: {
-                where: {
-                  name: "general",
-                },
-                select: {
-                  id: true,
-                },
-              },
+        const groups = await client.user.findUnique({
+            where: {
+                id,
             },
-          },
-          membership: {
             select: {
-              Group: {
-                select: {
-                  id: true,
-                  icon: true,
-                  name: true,
-                  channel: {
-                    where: {
-                      name: "general",
-                    },
+                group: {
                     select: {
-                      id: true,
+                        id: true,
+                        name: true,
+                        icon: true,
+                        channel: {
+                            where: {
+                                name: "general",
+                            },
+                            select: {
+                                id: true,
+                            },
+                        },
                     },
-                  },
                 },
-              },
+                membership: {
+                    select: {
+                        Group: {
+                            select: {
+                                id: true,
+                                icon: true,
+                                name: true,
+                                channel: {
+                                    where: {
+                                        name: "general",
+                                    },
+                                    select: {
+                                        id: true,
+                                    },
+                                },
+                            },
+                        },
+                    },
+                },
             },
-          },
-        },
-      })
-  
-      if (groups && (groups.group.length > 0 || groups.membership.length > 0)) {
-        return {
-          status: 200,
-          groups: groups.group,
-          members: groups.membership,
+        })
+
+        if (
+            groups &&
+            (groups.group.length > 0 || groups.membership.length > 0)
+        ) {
+            return {
+                status: 200,
+                groups: groups.group,
+                members: groups.membership,
+            }
         }
-      }
-  
-      return {
-        status: 404,
-      }
+
+        return {
+            status: 404,
+        }
     } catch (error) {
-      return { status: 400 }
+        return { status: 400 }
     }
-  }
-  
+}
+
+export const onGetGroupChannels = async (groupid: string) => {
+    try {
+        const channels = await client.channel.findMany({
+            where: {
+                groupId: groupid,
+            },
+            orderBy: {
+                createdAt: "asc",
+            },
+        })
+
+        return { status: 200, channels }
+    } catch (error) {
+        return { status: 400, message: "Oops! something went wrong" }
+    }
+}
+
+export const onGetAllGroupMembers = async (groupid: string) => {
+    try {
+        const user = await onAuthenticatedUser()
+        const members = await client.members.findMany({
+            where: {
+                groupId: groupid,
+                NOT: {
+                    userId: user.id,
+                },
+            },
+            include: {
+                User: true,
+            },
+        })
+
+        if (members && members.length > 0) {
+            return { status: 200, members }
+        }
+    } catch (error) {
+        return { status: 400, message: "Oops something went wrong" }
+    }
+}
