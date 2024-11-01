@@ -184,9 +184,4 @@ export const onDeleteChannel = async (channelId: string) => {
     } catch (error) {
         return { status: 400, message: "Oops! something went wrong" }
     }
-
-    
 }
-
-
-
