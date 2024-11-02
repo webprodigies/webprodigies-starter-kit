@@ -232,7 +232,6 @@ export const onGetAllGroupMembers = async (groupid: string) => {
   }
 }
 
-
 export const onSearchGroups = async (
   mode: "GROUPS" | "POSTS",
   query: string,

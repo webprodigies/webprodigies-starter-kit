@@ -42,7 +42,6 @@ export const useGroupChatOnline = (userid: string) => {
   }, [])
 }
 
-
 export const useSearch = (search: "GROUPS" | "POSTS") => {
   const [query, setQuery] = useState<string>("")
   const [debounce, setDebounce] = useState<string>("")
