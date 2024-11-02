@@ -1,7 +1,7 @@
 import { AuthenticateWithRedirectCallback } from "@clerk/nextjs"
 
 const CallBackPage = () => {
-    return <AuthenticateWithRedirectCallback />
+  return <AuthenticateWithRedirectCallback />
 }
 
 export default CallBackPage
