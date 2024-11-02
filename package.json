@@ -47,6 +47,7 @@
         "@stripe/stripe-js": "^4.9.0",
         "@supabase/supabase-js": "^2.46.1",
         "@tanstack/react-query": "^5.51.24",
+        "@uploadcare/react-uploader": "^1.1.0",
         "class-variance-authority": "^0.7.0",
         "clsx": "^2.1.1",
         "cmdk": "1.0.0",

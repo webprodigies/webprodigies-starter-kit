@@ -1284,6 +1284,11 @@
   dependencies:
     tslib "^2.4.0"
 
+"@symbiotejs/symbiote@^1.11.7":
+  version "1.11.7"
+  resolved "https://registry.npmjs.org/@symbiotejs/symbiote/-/symbiote-1.11.7.tgz"
+  integrity sha512-fUOJwzuldeApJ533YeTdrfnpp4nsA+ss1eiNBodX7RHf4LnhPB2Z9HP4fF3m2YhKYnxK0whjXaKA+wrxTRP5qA==
+
 "@tanstack/query-core@5.51.24":
   version "5.51.24"
   resolved "https://registry.npmjs.org/@tanstack/query-core/-/query-core-5.51.24.tgz"
@@ -1458,6 +1463,42 @@
   version "1.2.0"
   resolved "https://registry.npmjs.org/@ungap/structured-clone/-/structured-clone-1.2.0.tgz"
   integrity sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==
+
+"@uploadcare/file-uploader@^1.2.0":
+  version "1.9.0"
+  resolved "https://registry.npmjs.org/@uploadcare/file-uploader/-/file-uploader-1.9.0.tgz"
+  integrity sha512-jmdwrfbmVERctmslqitRKfeMvJhJ2a7RbumsvdjqOl5jbXyAYH7YFCQS0FaomLnlWwFzXwtHe4vz7w+AIDleJQ==
+  dependencies:
+    "@symbiotejs/symbiote" "^1.11.7"
+    "@uploadcare/image-shrink" "^6.14.1"
+    "@uploadcare/upload-client" "^6.14.1"
+    keyux "^0.7.1"
+
+"@uploadcare/image-shrink@^6.14.1":
+  version "6.14.2"
+  resolved "https://registry.npmjs.org/@uploadcare/image-shrink/-/image-shrink-6.14.2.tgz"
+  integrity sha512-q+lUz4MhuDY0pTyLJ6EnTc/+LpQNfVf00qI9ey8SEWnydMb+/v+4O/86Y+IieG5Akbx37Zm0ZolOHLobYdN3Fg==
+
+"@uploadcare/react-adapter@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.npmjs.org/@uploadcare/react-adapter/-/react-adapter-0.3.0.tgz"
+  integrity sha512-XQLPAERn47XC9srFH3HeQpywyInSaJ6JFDKD5XNvaSL5y2KF3MZerwMHsc/brAOLDQox7lLjzPXzrwlWlcMVqw==
+
+"@uploadcare/react-uploader@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.npmjs.org/@uploadcare/react-uploader/-/react-uploader-1.1.0.tgz"
+  integrity sha512-JI/fHfzg9LfAYnjBdXheLd4I/KAAQksZ33TN5EZ9jQGI3k3QgQJJLg3ertvhzRdCXzdyDLvAq+6E7VaGnJytww==
+  dependencies:
+    "@uploadcare/file-uploader" "^1.2.0"
+    "@uploadcare/react-adapter" "^0.3.0"
+
+"@uploadcare/upload-client@^6.14.1":
+  version "6.14.2"
+  resolved "https://registry.npmjs.org/@uploadcare/upload-client/-/upload-client-6.14.2.tgz"
+  integrity sha512-SCdr6Ed9m1mgKm0DBzZGz1XkA0MK7VZk5I+JAAa/IumfM3SdBfogbhgGBSp0mawTMIGKtDtBADMUsrCoaqtrUg==
+  dependencies:
+    form-data "^4.0.0"
+    ws "^8.2.3"
 
 acorn-jsx@^5.3.2:
   version "5.3.2"
@@ -1666,6 +1707,11 @@ ast-types-flow@^0.0.8:
   resolved "https://registry.npmjs.org/ast-types-flow/-/ast-types-flow-0.0.8.tgz"
   integrity sha512-OH/2E5Fg20h2aPrbe+QL8JZQFko0YZaF+j4mnQ7BGhfavO7OpSLa8a0y9sBwomHdSbkhTS8TQNayBfnW5DwbvQ==
 
+asynckit@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.npmjs.org/asynckit/-/asynckit-0.4.0.tgz"
+  integrity sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==
+
 available-typed-arrays@^1.0.7:
   version "1.0.7"
   resolved "https://registry.npmjs.org/available-typed-arrays/-/available-typed-arrays-1.0.7.tgz"
@@ -1865,6 +1911,13 @@ color@^4.2.3:
   dependencies:
     color-convert "^2.0.1"
     color-string "^1.9.0"
+
+combined-stream@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.npmjs.org/combined-stream/-/combined-stream-1.0.8.tgz"
+  integrity sha512-FQN4MRfuJeHf7cBbBMJFXhKSDq+2kAArBlmRBvcvFE5BB1HZKXtSFASDhdlz9zOYwxh8lDdnvmMOe/+5cdoEdg==
+  dependencies:
+    delayed-stream "~1.0.0"
 
 commander@^4.0.0:
   version "4.1.1"
@@ -2132,6 +2185,11 @@ define-properties@^1.1.3, define-properties@^1.2.0, define-properties@^1.2.1:
     define-data-property "^1.0.1"
     has-property-descriptors "^1.0.0"
     object-keys "^1.1.1"
+
+delayed-stream@~1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/delayed-stream/-/delayed-stream-1.0.0.tgz"
+  integrity sha512-ZySD7Nf91aLB0RxL4KGrKHBXl7Eds1DAmEdcoVawXnLD7SDhpNgtuII2aAkg7a7QS41jxPSZ17p4VdGnMHk3MQ==
 
 detect-libc@^2.0.3:
   version "2.0.3"
@@ -2726,6 +2784,15 @@ foreground-child@^3.1.0:
   dependencies:
     cross-spawn "^7.0.0"
     signal-exit "^4.0.1"
+
+form-data@^4.0.0:
+  version "4.0.1"
+  resolved "https://registry.npmjs.org/form-data/-/form-data-4.0.1.tgz"
+  integrity sha512-tzN8e4TX8+kkxGPK8D5u0FNmjPUjw3lwC9lSLxxoB/+GtsJG91CO8bSWy73APlgAZzZbXEYZJuxjkHH2w+Ezhw==
+  dependencies:
+    asynckit "^0.4.0"
+    combined-stream "^1.0.8"
+    mime-types "^2.1.12"
 
 fs.realpath@^1.0.0:
   version "1.0.0"
@@ -3355,6 +3422,11 @@ JSONStream@^1.3.5:
     object.assign "^4.1.4"
     object.values "^1.1.6"
 
+keyux@^0.7.1:
+  version "0.7.2"
+  resolved "https://registry.npmjs.org/keyux/-/keyux-0.7.2.tgz"
+  integrity sha512-Z8ULf9BhSx1hI2rKG2uNjcvMgQmza97ZW2w43phS5VaT4wiTka7tOL4i/GJSc79k65tbvpoTVNCZwam0pqoH6A==
+
 keyv@^4.5.3:
   version "4.5.4"
   resolved "https://registry.npmjs.org/keyv/-/keyv-4.5.4.tgz"
@@ -3512,6 +3584,18 @@ micromatch@^4.0.4, micromatch@^4.0.5:
   dependencies:
     braces "^3.0.3"
     picomatch "^2.3.1"
+
+mime-db@1.52.0:
+  version "1.52.0"
+  resolved "https://registry.npmjs.org/mime-db/-/mime-db-1.52.0.tgz"
+  integrity sha512-sPU4uV7dYlvtWJxwwxHD0PuihVNiE7TyAbQ5SWxDCB9mUYvOgroQOwYQQOKPJ8CIbE+1ETVlOoK1UC2nU3gYvg==
+
+mime-types@^2.1.12:
+  version "2.1.35"
+  resolved "https://registry.npmjs.org/mime-types/-/mime-types-2.1.35.tgz"
+  integrity sha512-ZDY+bPm5zTTF+YpCrAU9nK0UgICYPT0QtT1NZWFv4s++TNkcgVaT0g6+4R2uI4MjQjzysHB1zxuWL50hzaeXiw==
+  dependencies:
+    mime-db "1.52.0"
 
 mimic-fn@^4.0.0:
   version "4.0.0"
@@ -4927,7 +5011,7 @@ wrappy@1:
   resolved "https://registry.npmjs.org/wrappy/-/wrappy-1.0.2.tgz"
   integrity sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==
 
-ws@^8.14.2:
+ws@^8.14.2, ws@^8.2.3:
   version "8.18.0"
   resolved "https://registry.npmjs.org/ws/-/ws-8.18.0.tgz"
   integrity sha512-8VbfWfHLbbwu3+N6OKsOMpBdT4kXPDDB9cJk2bJ6mh9ucxdlnNvH1e+roYkKmN9Nxw2yjz7VzeO9oOz2zJ04Pw==
