@@ -11,7 +11,6 @@ export const supabaseClient = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
 )
 
-
 export const truncateString = (string: string) => {
-  return string.slice(0,60) + '...'
+  return string.slice(0, 60) + "..."
 }
