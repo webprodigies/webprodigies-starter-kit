@@ -269,7 +269,6 @@ export const onSearchGroups = async (
   }
 }
 
-
 export const onUpDateGroupSettings = async (
   groupid: string,
   type:
