@@ -1,17 +1,17 @@
 import { upload } from "@/lib/uploadcare"
 import {
-    CheckSquare,
-    Code,
-    Heading1,
-    Heading2,
-    Heading3,
-    ImageIcon,
-    List,
-    ListOrdered,
-    MessageSquarePlus,
-    Text,
-    TextQuote,
-    Video,
+  CheckSquare,
+  Code,
+  Heading1,
+  Heading2,
+  Heading3,
+  ImageIcon,
+  List,
+  ListOrdered,
+  MessageSquarePlus,
+  Text,
+  TextQuote,
+  Video,
 } from "lucide-react"
 import { Command, createSuggestionItems, renderItems } from "novel/extensions"
 
