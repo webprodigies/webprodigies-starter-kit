@@ -1,11 +1,11 @@
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import {
-    BoldIcon,
-    CodeIcon,
-    ItalicIcon,
-    StrikethroughIcon,
-    UnderlineIcon,
+  BoldIcon,
+  CodeIcon,
+  ItalicIcon,
+  StrikethroughIcon,
+  UnderlineIcon,
 } from "lucide-react"
 import { EditorBubbleItem, useEditor } from "novel"
 import { SelectorItem } from "./node.selector"

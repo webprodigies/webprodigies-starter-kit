@@ -1,21 +1,21 @@
 import { Button } from "@/components/ui/button"
 import {
-    Popover,
-    PopoverContent,
-    PopoverTrigger,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
 } from "@/components/ui/popover"
 import {
-    Check,
-    CheckSquare,
-    ChevronDown,
-    Code,
-    Heading1,
-    Heading2,
-    Heading3,
-    ListOrdered,
-    LucideIcon,
-    TextIcon,
-    TextQuote,
+  Check,
+  CheckSquare,
+  ChevronDown,
+  Code,
+  Heading1,
+  Heading2,
+  Heading3,
+  ListOrdered,
+  LucideIcon,
+  TextIcon,
+  TextQuote,
 } from "lucide-react"
 import { EditorBubbleItem, useEditor } from "novel"
 
@@ -90,7 +90,7 @@ const items: SelectorItem[] = [
         .chain()
         .focus()
         .toggleNode("paragraph", "paragraph")
-       // @ts-ignore
+        // @ts-ignore
         .toggleBlockquote()
         .run(),
     isActive: (editor: any) => editor.isActive("blockquote"),

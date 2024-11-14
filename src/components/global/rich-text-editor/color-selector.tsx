@@ -4,9 +4,9 @@ import type { Dispatch, SetStateAction } from "react"
 
 import { Button } from "@/components/ui/button"
 import {
-    Popover,
-    PopoverContent,
-    PopoverTrigger,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
 } from "@/components/ui/popover"
 export interface BubbleColorMenuItem {
   name: string
