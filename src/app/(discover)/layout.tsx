@@ -1,4 +1,4 @@
-import { Navbar } from "./explore/_components/navbar"
+import { Navbar } from "./_components/navbar"
 
 type ExploreLayoutProps = {
   children: React.ReactNode
