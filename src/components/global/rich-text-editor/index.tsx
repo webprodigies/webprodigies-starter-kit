@@ -1,10 +1,28 @@
 "use client"
 import { cn } from "@/lib/utils"
-import { EditorContent, EditorRoot, JSONContent } from "novel"
-import { handleCommandNavigation } from "novel/extensions"
+import { ErrorMessage } from "@hookform/error-message"
+import Placeholder from "@tiptap/extension-placeholder"
+import {
+  EditorBubble,
+  EditorCommand,
+  EditorCommandEmpty,
+  EditorCommandItem,
+  EditorContent,
+  EditorRoot,
+  JSONContent,
+} from "novel"
+import { CharacterCount, handleCommandNavigation } from "novel/extensions"
 import { useState } from "react"
 import { FieldErrors } from "react-hook-form"
 import { HtmlParser } from "../html-parser"
+import { ColorSelector } from "./color-selector"
+import { defaultExtensions } from "./extention"
+import { Image } from "./image"
+import { LinkSelector } from "./link-selector"
+import NodeSelector from "./node.selector"
+import { slashCommand, suggestionItems } from "./slash-command"
+import { TextButtons } from "./text-slector"
+import { Video } from "./video"
 
 type Props = {
   content: JSONContent | undefined
@@ -43,8 +61,10 @@ const BlockTextEditor = ({
   const [characters, setCharacters] = useState<number | undefined>(
     textContent?.length || undefined,
   )
+
   return (
     <div>
+      {" "}
       {htmlContent && !onEdit && inline ? (
         <HtmlParser html={htmlContent} />
       ) : (
@@ -95,7 +115,89 @@ const BlockTextEditor = ({
               setTextContent(text)
               setCharacters(text.length)
             }}
-          />
+          >
+            <EditorCommand className="z-50 h-auto max-h-[330px]  w-72 overflow-y-auto rounded-md border border-muted bg-background px-1 py-2 shadow-md transition-all">
+              <EditorCommandEmpty className="px-2 text-muted-foreground">
+                No results
+              </EditorCommandEmpty>
+              {suggestionItems.map((item: any) => (
+                <EditorCommandItem
+                  value={item.title}
+                  onCommand={(val) => item.command(val)}
+                  className={`flex w-full items-center space-x-2 rounded-md px-2 py-1 text-left text-sm hover:bg-accent aria-selected:bg-accent `}
+                  key={item.title}
+                >
+                  <div className="flex h-10 w-10 items-center justify-center rounded-md border border-muted bg-background">
+                    {item.icon}
+                  </div>
+                  <div>
+                    <p className="font-medium">{item.title}</p>
+                    <p className="text-xs text-muted-foreground">
+                      {item.description}
+                    </p>
+                  </div>
+                </EditorCommandItem>
+              ))}
+              <EditorBubble
+                tippyOptions={{
+                  placement: "top",
+                }}
+                className="flex w-fit max-w-[90vw] overflow-hidden rounded border border-muted bg-themeBlack text-themeTextGray shadow-xl"
+              >
+                <NodeSelector open={openNode} onOpenChange={setOpenNode} />
+                <LinkSelector open={openLink} onOpenChange={setOpenLink} />
+                <TextButtons />
+                <ColorSelector open={openColor} onOpenChange={setOpenColor} />
+              </EditorBubble>
+            </EditorCommand>
+          </EditorContent>
+          {inline ? (
+            onEdit && (
+              <div className="flex justify-between py-2">
+                <p
+                  className={cn(
+                    "text-xs",
+                    characters &&
+                      (characters < min || characters > max) &&
+                      "text-red-500",
+                  )}
+                >
+                  {characters || 0} / {max}
+                </p>
+                <ErrorMessage
+                  errors={errors}
+                  name={name}
+                  render={({ message }) => (
+                    <p className="text-red-400 mt-2">
+                      {message === "Required" ? "" : message}
+                    </p>
+                  )}
+                />
+              </div>
+            )
+          ) : (
+            <div className="flex justify-between py-2">
+              <p
+                className={cn(
+                  "text-xs",
+                  characters &&
+                    (characters < min || characters > max) &&
+                    "text-red-500",
+                )}
+              >
+                {characters || 0} / {max}
+              </p>
+              <ErrorMessage
+                errors={errors}
+                name={name}
+                render={({ message }) => (
+                  <p className="text-red-400 mt-2">
+                    {message === "Required" ? "" : message}
+                  </p>
+                )}
+              />
+            </div>
+          )}
         </EditorRoot>
       )}
     </div>
