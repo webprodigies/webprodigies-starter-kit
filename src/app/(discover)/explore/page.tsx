@@ -1,6 +1,10 @@
-import { onGetExploreGroup } from '@/actions/groups'
-import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query'
-import ExplorePageContent from '../_components/explore-content'
+import { onGetExploreGroup } from "@/actions/groups"
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+} from "@tanstack/react-query"
+import ExplorePageContent from "../_components/explore-content"
 
 type Props = {}
 
@@ -24,9 +28,9 @@ const ExplorePage = async (props: Props) => {
 
   return (
     <HydrationBoundary state={dehydrate(query)}>
-    <ExplorePageContent layout="SLIDER" />
-  </HydrationBoundary>
+      <ExplorePageContent layout="SLIDER" />
+    </HydrationBoundary>
   )
 }
 
-export default ExplorePage;
+export default ExplorePage

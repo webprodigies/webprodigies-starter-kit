@@ -351,7 +351,6 @@ export const onUpDateGroupSettings = async (
   }
 }
 
-
 export const onGetExploreGroup = async (category: string, paginate: number) => {
   try {
     const groups = await client.group.findMany({
