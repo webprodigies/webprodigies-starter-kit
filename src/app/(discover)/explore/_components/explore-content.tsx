@@ -4,15 +4,13 @@ import dynamic from "next/dynamic"
 import ExploreSlider from "./explore-slider"
 import GroupList from "./group-list"
 
-
 type Props = {
   layout: "SLIDER" | "LIST"
   category?: string
 }
 
 const SearchGroups = dynamic(
-  () =>
-    import("./search-group").then((components) => components.SearchGroups),
+  () => import("./search-group").then((components) => components.SearchGroups),
   {
     ssr: false,
   },

@@ -8,9 +8,16 @@ import {
 import { GroupSettingsSchema } from "@/components/forms/group-settings/schema"
 import { upload } from "@/lib/uploadcare"
 import { supabaseClient } from "@/lib/utils"
-import { onClearList, onInfiniteScroll } from "@/redux/slices/infinite-scroll-slice"
+import {
+  onClearList,
+  onInfiniteScroll,
+} from "@/redux/slices/infinite-scroll-slice"
 import { onOnline } from "@/redux/slices/online-member-slice"
-import { GroupStateProps, onClearSearch, onSearch } from "@/redux/slices/search-slice"
+import {
+  GroupStateProps,
+  onClearSearch,
+  onSearch,
+} from "@/redux/slices/search-slice"
 import { AppDispatch } from "@/redux/store"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useMutation, useQuery } from "@tanstack/react-query"
