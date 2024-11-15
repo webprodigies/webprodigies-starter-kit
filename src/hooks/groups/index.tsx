@@ -1,5 +1,6 @@
 "use client"
 import {
+  onGetExploreGroup,
   onGetGroupInfo,
   onSearchGroups,
   onUpDateGroupSettings,
@@ -7,14 +8,15 @@ import {
 import { GroupSettingsSchema } from "@/components/forms/group-settings/schema"
 import { upload } from "@/lib/uploadcare"
 import { supabaseClient } from "@/lib/utils"
+import { onClearList, onInfiniteScroll } from "@/redux/slices/infinite-scroll-slice"
 import { onOnline } from "@/redux/slices/online-member-slice"
-import { onClearSearch, onSearch } from "@/redux/slices/search-slice"
+import { GroupStateProps, onClearSearch, onSearch } from "@/redux/slices/search-slice"
 import { AppDispatch } from "@/redux/store"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useMutation, useQuery } from "@tanstack/react-query"
 import { useRouter } from "next/navigation"
 import { JSONContent } from "novel"
-import { useEffect, useState } from "react"
+import { useEffect, useLayoutEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import { useDispatch } from "react-redux"
 import { toast } from "sonner"
@@ -276,4 +278,46 @@ export const useGroupSettings = (groupid: string) => {
     setOnDescription,
     onDescription,
   }
+}
+
+export const useGroupList = (query: string) => {
+  const { data } = useQuery({
+    queryKey: [query],
+  })
+
+  const dispatch: AppDispatch = useDispatch()
+
+  useLayoutEffect(() => {
+    dispatch(onClearList({ data: [] }))
+  }, [])
+
+  const { groups, status } = data as {
+    groups: GroupStateProps[]
+    status: number
+  }
+
+  return { groups, status }
+}
+
+export const useExploreSlider = (query: string, paginate: number) => {
+  const [onLoadSlider, setOnLoadSlider] = useState<boolean>(false)
+  const dispatch: AppDispatch = useDispatch()
+  const { data, refetch, isFetching, isFetched } = useQuery({
+    queryKey: ["fetch-group-slides"],
+    queryFn: () => onGetExploreGroup(query, paginate | 0),
+    enabled: false,
+  })
+
+  if (isFetched && data?.status === 200 && data.groups) {
+    dispatch(onInfiniteScroll({ data: data.groups }))
+  }
+
+  useEffect(() => {
+    setOnLoadSlider(true)
+    return () => {
+      onLoadSlider
+    }
+  }, [])
+
+  return { refetch, isFetching, data, onLoadSlider }
 }

@@ -4,7 +4,7 @@ import {
   HydrationBoundary,
   QueryClient,
 } from "@tanstack/react-query"
-import ExplorePageContent from "../_components/explore-content"
+import ExplorePageContent from "./_components/explore-content"
 
 type Props = {}
 
